@@ -46,6 +46,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         resolver = this.contentResolver
+    }
+
+    override fun onStart() {
+        super.onStart()
         requestPermissionForReadExternalStorage()
     }
 
@@ -108,8 +112,8 @@ class MainActivity : AppCompatActivity() {
         return abs(currentTime - dateAdded) <= DEFAULT_DETECT_WINDOW_SECONDS
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onPause() {
+        super.onPause()
         contentResolver.unregisterContentObserver(contentObserver)
     }
 }
